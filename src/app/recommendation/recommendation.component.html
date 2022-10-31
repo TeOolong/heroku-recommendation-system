@@ -1,0 +1,222 @@
+<h1>Recomendaciones de imagenes</h1>
+<div class="row" style="display: flex; width: 100%">
+  <div class="col-6">
+    <div class="row" style="width: 100%; text-align: center">
+      <div class="col-6">
+        <img class="image_predict" [src]="current.image" alt="" />
+      </div>
+      <div class="col-6" style="margin: auto 0; text-align: left">
+        <ul>
+          <li>Genero: {{ current.gender }}</li>
+          <li>Estilo: {{ current.profile }}</li>
+          <li>Tipo: {{ current.type }}</li>
+        </ul>
+      </div>
+    </div>
+    <div *ngIf="current.type !== 'topwear'">
+      <h4>Prendas superiores</h4>
+      <div style="display: flex; width: 100%">
+        <img
+          *ngFor="let ele of tops"
+          class="image_predict"
+          [src]="ele"
+          alt=""
+        />
+      </div>
+    </div>
+    <div *ngIf="current.type !== 'bottomwear'">
+      <h4>Prendas inferiores</h4>
+      <div style="display: flex; width: 100%">
+        <img
+          *ngFor="let ele of bottoms"
+          class="image_predict"
+          [src]="ele"
+          alt=""
+        />
+      </div>
+    </div>
+    <div *ngIf="current.type !== 'footwear'">
+      <h4>Calzado</h4>
+      <div style="display: flex; width: 100%">
+        <img
+          *ngFor="let ele of foots"
+          class="image_predict"
+          [src]="ele"
+          alt=""
+        />
+      </div>
+    </div>
+  </div>
+  <div class="col-6">
+    <h1>{{ currentCount }}/10</h1>
+    <form [formGroup]="form">
+      <h3 id="example-radio-group-label">¿Correcta clasificación?</h3>
+      <div class="row">
+        <div
+          class="col-6"
+          [formGroup]="form"
+          style="justify-content: space-between"
+        >
+          <label style="justify-content: space-between; margin-right: 10px">
+            <input type="radio" value="Y" formControlName="first_question" />
+            <span>Si</span>
+          </label>
+          <label style="justify-content: space-between">
+            <input type="radio" value="N" formControlName="first_question" />
+            <span>No</span>
+          </label>
+        </div>
+      </div>
+      <div
+        class="row"
+        style="display: flex; width: 100%"
+        *ngIf="form.value['first_question'] === 'N'"
+        [formGroup]="form"
+      >
+        <div class="col-12" style="width: 100%">
+          <label style="width: 100%">
+            <input
+              type="checkbox"
+              value="Y"
+              formControlName="first_question_bonus"
+            />
+            <span
+              >¿Falló en clasificar correctamente la categoría de tipo?</span
+            >
+          </label>
+        </div>
+        <div class="col-12" style="width: 100%">
+          <label style="width: 100%">
+            <input
+              type="checkbox"
+              value="Y"
+              formControlName="second_question_bonus"
+            />
+            <span
+              >¿Falló en clasificar correctamente la categoría de género?</span
+            >
+          </label>
+        </div>
+        <div class="col-12" style="width: 100%">
+          <label style="width: 100%">
+            <input
+              type="checkbox"
+              value="Y"
+              formControlName="third_question_bonus"
+            />
+            <span
+              >¿Falló en clasificar correctamente la categoría de estilo?</span
+            >
+          </label>
+        </div>
+      </div>
+      <h3 id="example-radio-group-label" style="margin-top: 20px">
+        ¿Correcta recomendación?
+        <p>
+          (1. Definitivamente no, 2. No, 3. Indiferente, 4. Si, 5.
+          Definitivamente si )
+        </p>
+      </h3>
+      <div class="row">
+        <div
+          class="col-12"
+          [formGroup]="form"
+          style="justify-content: space-between"
+        >
+          <h5 id="example-radio-group-label" style="margin-top: 20px">
+            ¿Crees que las prendas escogidas para la recomendación de conjuntos
+            de ropa son adecuadas?
+          </h5>
+          <label
+            style="justify-content: space-between; margin-right: 10px"
+            *ngFor="let scale of scales"
+          >
+            <input
+              type="radio"
+              value="{{ scale }}"
+              formControlName="first_recomendation"
+            />
+            <span>{{ scale }}</span>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div
+          class="col-12"
+          [formGroup]="form"
+          style="justify-content: space-between"
+        >
+          <h5 id="example-radio-group-label" style="margin-top: 20px">
+            ¿Los colores de las prendas escogidas combinan con la prenda que
+            ingresaste?
+          </h5>
+          <label
+            style="justify-content: space-between; margin-right: 10px"
+            *ngFor="let scale of scales"
+          >
+            <input
+              type="radio"
+              value="{{ scale }}"
+              formControlName="second_recomendation"
+            />
+            <span>{{ scale }}</span>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div
+          class="col-12"
+          [formGroup]="form"
+          style="justify-content: space-between"
+        >
+          <h5 id="example-radio-group-label" style="margin-top: 20px">
+            ¿Consideras que los estilos de moda de las prendas mostradas en un
+            mismo conjunto son similares?
+          </h5>
+          <label
+            style="justify-content: space-between; margin-right: 10px"
+            *ngFor="let scale of scales"
+          >
+            <input
+              type="radio"
+              value="{{ scale }}"
+              formControlName="third_recomendation"
+            />
+            <span>{{ scale }}</span>
+          </label>
+        </div>
+      </div>
+      <div class="row" style="margin-bottom: 10px">
+        <div
+          class="col-12"
+          [formGroup]="form"
+          style="justify-content: space-between"
+        >
+          <h5 id="example-radio-group-label" style="margin-top: 20px">
+            ¿Te sirven estas recomendaciones?
+          </h5>
+          <label
+            style="justify-content: space-between; margin-right: 10px"
+            *ngFor="let scale of scales"
+          >
+            <input
+              type="radio"
+              value="{{ scale }}"
+              formControlName="fourth_recomendation"
+            />
+            <span>{{ scale }}</span>
+          </label>
+        </div>
+      </div>
+      <button
+        type="button"
+        class="btn btn-primary"
+        style="float: right"
+        (click)="submit()"
+        [disabled]="form.invalid"
+      >
+        Guardar
+      </button>
+    </form>
+  </div>
+</div>

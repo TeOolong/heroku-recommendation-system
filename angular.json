@@ -41,7 +41,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -78,7 +78,10 @@
               "browserTarget": "sem2-workspace:build:development"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": {
+            "disableHostCheck": true
+          }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -107,5 +110,7 @@
       }
     }
   },
-  "defaultProject": "sem2-workspace"
+  "cli": {
+    "analytics": false
+  }
 }

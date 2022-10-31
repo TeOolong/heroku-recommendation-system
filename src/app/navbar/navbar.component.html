@@ -1,0 +1,18 @@
+<div class="navbar">
+  <div class="container-xl" style="position: relative; display: block">
+    <nav style="justify-content: space-between">
+      <div class="menu">
+        <ng-container *ngFor="let nav of navList; let i = index">
+          <button
+            mat-button
+            *ngIf="!nav.children"
+            routerLink="{{ nav.fullPath }}"
+          >
+            {{ nav.name }}
+          </button>
+        </ng-container>
+      </div>
+    </nav>
+  </div>
+</div>
+<router-outlet></router-outlet>

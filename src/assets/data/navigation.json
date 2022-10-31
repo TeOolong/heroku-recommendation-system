@@ -1,0 +1,10 @@
+[
+    {
+        "name" : "Inicio",
+        "fullPath" : "/home"
+    },
+    {
+        "name" : "Recomendación",
+        "fullPath" : "/recommendation"
+    }
+]

@@ -1,0 +1,131 @@
+<div class="container">
+  <div class="row" style="width: 100%; text-align: center">
+    <h2 style="font-size: 36px">
+      Sistemas de Recomendación de prendas por tipo, género y estilos de vestir
+      basado en CNN
+    </h2>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col-6">
+      <p style="font-size: 20px">
+        Hola, somos estudiantes de la carrera de ingeniería de sistemas de la
+        universidad de Lima y quisiéramos pedir tu ayuda para nuestro trabajo
+        del curso de Seminario de Investigación 2. Lo único que se pide es
+        probar nuestra interfaz unas 10 veces y contestar las preguntas de los
+        formularios para cada prueba. Los resultados serán únicamente utilizados
+        para este trabajo.
+      </p>
+    </div>
+    <div class="col-6" style="text-align: center">
+      <img
+        style="max-height: 300px; max-width: 400px"
+        height="100%"
+        width="100%"
+        src="assets/images/Estilos-de-moda-Cuál-es-el-tuyo.jpg"
+        alt="a"
+      />
+    </div>
+  </div>
+  <hr />
+
+  <div class="row" style="width: 100%">
+    <div class="col-12" [formGroup]="form" style="display: flex">
+      <h4>¿ACEPTARIAS AYUDARNOS?</h4>
+      <div style="font-size: 22px; margin-left: 15px">
+        <label style="justify-content: space-between; margin-right: 10px">
+          <input type="radio" value="Y" formControlName="wanna_help" />
+          <span>Si</span>
+        </label>
+        <label style="justify-content: space-between">
+          <input type="radio" value="N" formControlName="wanna_help" />
+          <span>No</span>
+        </label>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="form.value.wanna_help === 'Y'">
+    <div style="margin-top: 15px">
+      <div class="row">
+        <div class="col-6" [formGroup]="form">
+          <input
+            class="form-control"
+            matInput
+            type="text"
+            formControlName="name"
+            placeholder="Nombre"
+          />
+        </div>
+        <div class="col-6" [formGroup]="form">
+          <input
+            class="form-control"
+            matInput
+            type="number"
+            formControlName="age"
+            placeholder="Edad"
+          />
+        </div>
+      </div>
+      <div class="row" style="margin-top: 10px">
+        <div class="col-6" [formGroup]="form" style="display: flex">
+          <h5>Experiencia en moda:</h5>
+          <div style="display: flex; margin: 0 10px">
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                value="Y"
+                formControlName="experience"
+              />
+              <label class="form-check-label">Si</label>
+            </div>
+            <div class="form-check" style="margin: 0 10px">
+              <input
+                class="form-check-input"
+                type="radio"
+                value="N"
+                formControlName="experience"
+              />
+              <label class="form-check-label">No</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6" [formGroup]="form">
+          <input
+            class="form-control"
+            matInput
+            type="number"
+            formControlName="dni"
+            placeholder="DNI"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="row"
+      style="margin-top: 10px"
+      *ngIf="form.value['experience'] === 'Y'"
+    >
+      <div class="col-6" [formGroup]="form">
+        <input
+          class="form-control"
+          matInput
+          type="number"
+          formControlName="time"
+          placeholder="¿Cuanto tiempo? (años)"
+        />
+      </div>
+    </div>
+    <div style="float: right; margin-top: 10px">
+      <button
+        type="button"
+        (click)="submit()"
+        class="btn btn-primary"
+        [disabled]="form.invalid"
+      >
+        Enviar
+      </button>
+    </div>
+  </div>
+</div>
